@@ -18,6 +18,13 @@
     "source.fixAll.eslint": "explicit"
   },
 
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.runInTerminal": true,
+  "code-runner.ignoreSelection": true,
+  "code-runner.executorMap": {
+    "typescript": "clear ; npx tsx"
+  },
+
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
