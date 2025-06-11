@@ -18,6 +18,12 @@
     "source.fixAll.eslint": "explicit"
   },
 
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "'([^']*)'"],
+    ["clsx\\(([^)]*)\\)", "\"([^\"]*)\""],
+    ["clsx\\(([^)]*)\\)", "`([^`]*)`"]
+  ],
+
   "code-runner.clearPreviousOutput": true,
   "code-runner.runInTerminal": true,
   "code-runner.ignoreSelection": true,
