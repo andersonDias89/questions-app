@@ -5,6 +5,9 @@ import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_GUARD } from '@nestjs/core';
+import { QuestionsModule } from './questions/questions.module';
+import { join } from 'path';
+import { DbModule } from './db/db.module';
 
 @Module({
   imports: [
@@ -20,18 +23,8 @@ import { APP_GUARD } from '@nestjs/core';
         },
       ],
     }),
-    TypeOrmModule.forRootAsync({
-      useFactory: () => ({
-        type: 'postgres',
-        host: process.env.DB_HOST,
-        port: parseInt(process.env.DB_PORT || '5432', 10),
-        username: process.env.POSTGRES_USER,
-        password: process.env.POSTGRES_PASSWORD,
-        database: process.env.POSTGRES_DB,
-        synchronize: false, // apenas para dev! cuidado em produção
-        autoLoadEntities: true,
-      }),
-    }),
+    QuestionsModule,
+    DbModule,
   ],
   controllers: [AppController],
   providers: [
