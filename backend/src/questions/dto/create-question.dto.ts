@@ -1,12 +1,29 @@
-import { IsString, Length } from 'class-validator';
+import { IsIn, IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class CreateQuestionDto {
-  @IsString({ message: 'Pergunta precisa ser uma string' })
-  @Length(10, 150, {
-    message: 'A pergunta precisa ter entre 10 e 150 caracteres',
-  })
-  name: string;
+  @IsString()
+  @IsNotEmpty({ message: 'The statement is required.' })
+  statement: string;
 
-  @IsString({ message: 'Pergunta precisa ser uma string' })
-  outro: string;
+  @IsString()
+  @IsNotEmpty({ message: 'Option A is required.' })
+  optionA: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'Option B is required.' })
+  optionB: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'Option C is required.' })
+  optionC: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'Option D is required.' })
+  optionD: string;
+
+  @IsString()
+  @IsIn(['A', 'B', 'C', 'D'], {
+    message: 'Correct option must be A, B, C, or D.',
+  })
+  correctOption: 'A' | 'B' | 'C' | 'D';
 }

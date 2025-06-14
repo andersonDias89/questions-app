@@ -5,9 +5,21 @@ export class Question {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
-  name: string;
+  @Column('text')
+  statement: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
-  outro: string;
+  @Column('text')
+  optionA: string;
+
+  @Column('text')
+  optionB: string;
+
+  @Column('text')
+  optionC: string;
+
+  @Column('text')
+  optionD: string;
+
+  @Column({ type: 'char', length: 1 })
+  correctOption: 'A' | 'B' | 'C' | 'D';
 }

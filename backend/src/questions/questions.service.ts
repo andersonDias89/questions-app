@@ -14,7 +14,13 @@ export class QuestionsService {
 
   async create(data: CreateQuestionDto): Promise<void> {
     const existing = await this.userRepository.findOne({
-      where: { name: data.name, outro: data.outro },
+      where: {
+        statement: data.statement,
+        optionA: data.optionA,
+        optionB: data.optionB,
+        optionC: data.optionC,
+        optionD: data.optionD,
+      },
     });
     if (existing) {
       throw new ConflictException('Questão já existe');
