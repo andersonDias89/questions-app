@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { Question } from './entities/question.entity';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { join } from 'path';
         username: config.get('DB_USER'),
         password: config.get('DB_PASS'),
         database: config.get('DB_NAME'),
-        entities: [join(__dirname, 'entities', '*.entity.{ts,js}')],
+        entities: [Question], // ← isso é essencial
         migrations: [join(__dirname, 'migrations', '*.{ts,js}')],
         synchronize: false,
         migrationsRun: true,

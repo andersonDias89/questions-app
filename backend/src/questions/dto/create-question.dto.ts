@@ -6,4 +6,7 @@ export class CreateQuestionDto {
     message: 'A pergunta precisa ter entre 10 e 150 caracteres',
   })
   name: string;
+
+  @IsString({ message: 'Pergunta precisa ser uma string' })
+  outro: string;
 }
