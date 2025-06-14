@@ -1,11 +1,30 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Question } from 'src/db/entities/question.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class QuestionsService {
-  create(createQuestionDto: CreateQuestionDto) {
-    return 'This action adds a new question';
+  constructor(
+    @InjectRepository(Question)
+    private userRepository: Repository<Question>, // <-- CORRIGIDO AQUI
+  ) {}
+
+  async create(data: CreateQuestionDto): Promise<void> {
+    const existing = await this.userRepository.findOne({
+      where: { name: data.name },
+    });
+    if (existing) {
+      throw new ConflictException('Questão já existe');
+    }
+
+    const newQuestion = this.userRepository.create({
+      ...data,
+    });
+
+    await this.userRepository.save(newQuestion);
   }
 
   findAll() {
