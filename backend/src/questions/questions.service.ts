@@ -33,8 +33,8 @@ export class QuestionsService {
     await this.userRepository.save(newQuestion);
   }
 
-  findAll() {
-    return `This action returns all questions`;
+  async findAll(): Promise<Question[]> {
+    return await this.userRepository.find();
   }
 
   findOne(id: number) {
