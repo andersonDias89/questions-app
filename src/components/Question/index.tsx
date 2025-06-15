@@ -7,9 +7,11 @@ interface Props {
 
 export function Question({ question }: Props) {
   return (
-    <div className="p-4 flex flex-col ">
-      <div className="p-4 flex flex-col ">
-        <h2>{question.statement}</h2>
+    <div className="p-4 flex flex-col shadow-xl bg-gray-300 ">
+      <div className="p-4 flex flex-col gap-3">
+        <h2 className=" bg-gray-300 p-4 rounded-md text-gray-800 font-semibold text-lg">
+          {question.statement}
+        </h2>
         <RadioGroup
           options={[
             { id: `${question.id}-A`, value: "A", label: question.optionA },

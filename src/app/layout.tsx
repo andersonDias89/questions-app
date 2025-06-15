@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CardPage } from "@/components/ui/Cards/CardPage";
 
 export const metadata: Metadata = {
   title: "Question App",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className="m-auto">{children}</body>
+      <body className="m-auto">
+        <CardPage>{children}</CardPage>
+      </body>
     </html>
   );
 }

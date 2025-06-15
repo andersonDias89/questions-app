@@ -9,5 +9,13 @@ interface PageProps {
 
 export default async function QuestionsPageId({ params }: PageProps) {
   const question = await fetchQuestionById(params.id);
-  return <Question question={question} />;
+  return (
+    <div>
+      <div>
+        <div className="w-full">
+          <Question question={question} />
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -6,21 +6,18 @@ type Option = {
   label: string;
 };
 
-type CustomRadioGroupProps = {
+type RadioGroupProps = {
   options: Option[];
   name: string;
   defaultValue?: string;
 };
 
-export function RadioGroup({
-  options,
-  name,
-  defaultValue,
-}: CustomRadioGroupProps) {
+export function RadioGroup({ options, name, defaultValue }: RadioGroupProps) {
   return (
     <fieldset className="space-y-2">
       {options.map((option) => (
-        <div key={option.id} className="relative">
+        <div key={option.id} className="relative flex items-center">
+          {/* INPUT COM peer */}
           <input
             type="radio"
             id={option.id}
@@ -29,17 +26,19 @@ export function RadioGroup({
             defaultChecked={option.value === defaultValue}
             className="peer hidden"
           />
+
+          {/* LABEL após o input, reagindo ao estado checked do peer */}
           <label
             htmlFor={option.id}
-            className={`
+            className="
+              w-full
               flex items-center gap-3 p-4 rounded-md transition cursor-pointer
-              bg-gray-200 hover:bg-gray-300
-              peer-checked:bg-blue-100 peer-checked:border peer-checked:border-blue-600
-            `}
+              bg-gray-200 hover:bg-green-100
+              peer-checked:bg-green-200 peer-checked:border peer-checked:border-green-900
+              peer-checked:font-black peer-checked:text-black peer-checked:hover:bg-green-200
+            "
           >
-            <span className="text-sm font-medium text-gray-700 peer-checked:text-blue-700 peer-checked:font-bold">
-              {option.label}
-            </span>
+            <span className="text-sm font-medium">{option.label}</span>
           </label>
         </div>
       ))}
