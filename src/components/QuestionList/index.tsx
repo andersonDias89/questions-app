@@ -4,7 +4,7 @@ interface Props {
   questions: QuestionModel[];
 }
 
-export function Question({ questions }: Props) {
+export function QuestionsList({ questions }: Props) {
   return (
     <div className="p-4 flex flex-col gap-4 border-4 border-t-transparent border-slate-900">
       {questions.map((question) => (
