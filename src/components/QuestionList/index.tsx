@@ -1,4 +1,5 @@
 import { QuestionModel } from "@/models/questions/question-model";
+import { Question } from "../Question";
 
 interface Props {
   questions: QuestionModel[];
@@ -6,23 +7,9 @@ interface Props {
 
 export function QuestionsList({ questions }: Props) {
   return (
-    <div className="p-4 flex flex-col gap-4 border-4 border-t-transparent border-slate-900">
+    <div className="p-4 flex flex-col gap-6">
       {questions.map((question) => (
-        <div key={question.id}>
-          <h2>{question.statement}</h2>
-          <div className="flex gap-2">
-            <span>A -</span> <p>{question.optionA}</p>
-          </div>
-          <div className="flex gap-2">
-            <span>B -</span> <p>{question.optionB}</p>
-          </div>
-          <div className="flex gap-2">
-            <span>C -</span> <p>{question.optionC}</p>
-          </div>
-          <div className="flex gap-2">
-            <span>D -</span> <p>{question.optionD}</p>
-          </div>
-        </div>
+        <Question key={question.id} question={question} />
       ))}
     </div>
   );
