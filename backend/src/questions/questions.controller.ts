@@ -10,6 +10,7 @@ import {
 import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { QuestionDto } from './dto/question.dto';
 
 @Controller('questions')
 export class QuestionsController {
@@ -27,8 +28,8 @@ export class QuestionsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.questionsService.findOne(+id);
+  findById(@Param('id') id: string): Promise<QuestionDto> {
+    return this.questionsService.findById(id);
   }
 
   @Patch(':id')
