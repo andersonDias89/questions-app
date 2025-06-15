@@ -11,6 +11,8 @@ export function InputDefault({
     <input
       type="text"
       className={clsx(
+        "bg-white",
+        "text-gray-900",
         "w-full h-10",
         "px-3 py-2",
         "border border-gray-300",

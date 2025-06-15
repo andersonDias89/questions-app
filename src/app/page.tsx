@@ -1,11 +1,8 @@
-import { InputDefault } from "@/components/Inputs/InputDefault";
-import { SelectDefault } from "@/components/Selects/SelectDefault";
-import { TestRequest } from "@/components/TesteRequest";
+import { fetchQuestions } from "@/lib/fetch-questions";
+import { Question } from "@/components/QuestionList";
 
-export default function HomePage() {
-  return (
-    <>
-      <TestRequest />
-    </>
-  );
+export default async function HomePage() {
+  const questions = await fetchQuestions();
+
+  return <Question questions={questions} />;
 }
