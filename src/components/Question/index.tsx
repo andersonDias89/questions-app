@@ -48,9 +48,11 @@ export function Question({ question }: Props) {
           answered={answered}
         />
 
-        <ButtonDefault onClick={handleAnswer} disabled={!selectedOption}>
-          Responder
-        </ButtonDefault>
+        {!answered && (
+          <ButtonDefault onClick={handleAnswer} disabled={!selectedOption}>
+            Responder
+          </ButtonDefault>
+        )}
 
         <AnswerFeedback show={answered} isCorrect={isCorrect} />
       </div>

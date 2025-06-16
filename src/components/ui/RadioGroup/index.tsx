@@ -46,8 +46,8 @@ export function RadioGroup({
         } else {
           labelClass += `
             hover:bg-gray-600 
-            peer-checked:bg-green-200 peer-checked:border peer-checked:border-green-900
-            peer-checked:font-black peer-checked:text-black peer-checked:hover:bg-green-200
+            peer-checked:bg-cyan-900 peer-checked:border peer-checked:border-green-900
+            peer-checked:font-extrabold peer-checked:text-white peer-checked:hover:bg-cyan-900 peer-checked:border-white
           `;
         }
 
