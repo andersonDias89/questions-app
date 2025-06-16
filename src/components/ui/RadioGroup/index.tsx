@@ -30,8 +30,8 @@ export function RadioGroup({
         const isCorrect = correctOption === option.value;
 
         let labelClass = `
-          w-full flex items-center gap-3 p-4 rounded-md transition cursor-pointer
-          bg-gray-200
+          w-full flex items-center gap-3 p-4 rounded-md transition-colors cursor-pointer
+           bg-gray-800 text-white
         `;
 
         if (answered) {
@@ -45,7 +45,7 @@ export function RadioGroup({
           labelClass += " cursor-default";
         } else {
           labelClass += `
-            hover:bg-green-100
+            hover:bg-gray-600 
             peer-checked:bg-green-200 peer-checked:border peer-checked:border-green-900
             peer-checked:font-black peer-checked:text-black peer-checked:hover:bg-green-200
           `;

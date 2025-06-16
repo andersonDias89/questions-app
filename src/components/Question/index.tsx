@@ -4,6 +4,8 @@ import { useState } from "react";
 import { QuestionModel } from "@/models/questions/question-model";
 import { RadioGroup } from "../ui/RadioGroup";
 import { ButtonDefault } from "../ui/Buttons/ButtonDefault";
+import { AnswerFeedback } from "../ui/Feedbacks/AnswerFeedback";
+import { CheckCircle, XCircle } from "lucide-react";
 
 interface Props {
   question: QuestionModel;
@@ -26,9 +28,9 @@ export function Question({ question }: Props) {
   const isCorrect = selectedOption === question.correctOption;
 
   return (
-    <div className="p-4 flex flex-col shadow-xl bg-gray-300">
+    <div className="p-4 flex flex-col shadow-xl bg-gray-900 rounded-md">
       <div className="p-4 flex flex-col gap-3">
-        <h2 className="bg-gray-300 p-4 rounded-md text-gray-800 font-semibold text-lg">
+        <h2 className=" bg-gray-950 p-4 rounded-md text-white font-semibold text-lg">
           {question.statement}
         </h2>
         <RadioGroup
@@ -50,15 +52,7 @@ export function Question({ question }: Props) {
           Responder
         </ButtonDefault>
 
-        {answered && (
-          <p
-            className={`mt-4 text-lg font-bold ${
-              isCorrect ? "text-green-700" : "text-red-600"
-            }`}
-          >
-            {isCorrect ? "✅ Resposta correta!" : "❌ Resposta errada!"}
-          </p>
-        )}
+        <AnswerFeedback show={answered} isCorrect={isCorrect} />
       </div>
     </div>
   );

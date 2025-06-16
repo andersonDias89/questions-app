@@ -5,7 +5,5 @@ type CardPageProps = {
 };
 
 export function CardPage({ children }: CardPageProps) {
-  return (
-    <div className="w-6xl m-auto p-8 bg-gray-200 h-screen">{children}</div>
-  );
+  return <div className="w-6xl m-auto p-8 bg-gray-950">{children}</div>;
 }
