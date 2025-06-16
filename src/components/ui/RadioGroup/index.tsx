@@ -37,6 +37,7 @@ export function RadioGroup({
               peer-checked:bg-green-200 peer-checked:border peer-checked:border-green-900
               peer-checked:font-black peer-checked:text-black peer-checked:hover:bg-green-200"
           >
+            <span>{option.value}.</span> {/* A, B, C, D */}
             <span className="text-sm font-medium">{option.label}</span>
           </label>
         </div>
