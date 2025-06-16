@@ -1,3 +1,0 @@
-npx typeorm migration:create src/db/migrations/CriarTabelaQuestion
-
-ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -d src/db/typeOrm.migration-config.ts src/db/migrations/CriarColunaOutro
