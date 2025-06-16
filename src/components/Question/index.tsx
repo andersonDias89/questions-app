@@ -5,19 +5,19 @@ import { QuestionModel } from "@/models/questions/question-model";
 import { RadioGroup } from "../ui/RadioGroup";
 import { ButtonDefault } from "../ui/Buttons/ButtonDefault";
 import { AnswerFeedback } from "../ui/Feedbacks/AnswerFeedback";
-import { CheckCircle, XCircle } from "lucide-react";
 
 interface Props {
   question: QuestionModel;
+  totalQuestions?: number;
 }
 
-export function Question({ question }: Props) {
+export function Question({ question, totalQuestions }: Props) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [answered, setAnswered] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(e.target.value);
-    setAnswered(false); // limpa a resposta se trocar a opção
+    setAnswered(false);
   };
 
   const handleAnswer = () => {
@@ -30,8 +30,8 @@ export function Question({ question }: Props) {
   return (
     <div className="p-4 flex flex-col shadow-xl bg-gray-900 rounded-md">
       <div className="p-4 flex flex-col gap-3">
-        <h2 className=" bg-gray-950 p-4 rounded-md text-white font-semibold text-lg">
-          {question.statement}
+        <h2 className="bg-gray-950 p-4 rounded-md text-white text-lg">
+          {`${totalQuestions} - ${question.statement}`}
         </h2>
         <RadioGroup
           options={[

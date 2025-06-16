@@ -8,8 +8,12 @@ interface Props {
 export function QuestionsList({ questions }: Props) {
   return (
     <div className="p-4 flex flex-col gap-6">
-      {questions.map((question) => (
-        <Question key={question.id} question={question} />
+      {questions.map((question, index) => (
+        <Question
+          key={question.id}
+          question={question}
+          totalQuestions={index + 1} // Aqui você passa o número da questão
+        />
       ))}
     </div>
   );

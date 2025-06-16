@@ -18,7 +18,7 @@ export function AnswerFeedback({
   if (!show) return null;
 
   const Icon = isCorrect ? CheckCircle : XCircle;
-  const colorClass = isCorrect ? "text-green-700" : "text-red-600";
+  const colorClass = isCorrect ? "text-green-700" : "text-red-500";
 
   return (
     <div
