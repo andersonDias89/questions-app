@@ -8,7 +8,10 @@ type RadioGroupProps = {
   options: Option[];
   name: string;
   defaultValue?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // ✅ Aqui
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  selectedOption?: string | null;
+  correctOption?: string;
+  answered?: boolean;
 };
 
 export function RadioGroup({
@@ -16,32 +19,57 @@ export function RadioGroup({
   name,
   defaultValue,
   onChange,
+  selectedOption,
+  correctOption,
+  answered,
 }: RadioGroupProps) {
   return (
-    <fieldset className="space-y-2">
-      {options.map((option) => (
-        <div key={option.id} className="relative flex items-center">
-          <input
-            type="radio"
-            id={option.id}
-            name={name}
-            value={option.value}
-            defaultChecked={option.value === defaultValue}
-            className="peer hidden"
-            onChange={onChange} // ✅ Aqui
-          />
-          <label
-            htmlFor={option.id}
-            className="w-full flex items-center gap-3 p-4 rounded-md transition cursor-pointer
-              bg-gray-200 hover:bg-green-100
-              peer-checked:bg-green-200 peer-checked:border peer-checked:border-green-900
-              peer-checked:font-black peer-checked:text-black peer-checked:hover:bg-green-200"
-          >
-            <span>{option.value}.</span> {/* A, B, C, D */}
-            <span className="text-sm font-medium">{option.label}</span>
-          </label>
-        </div>
-      ))}
+    <fieldset className="space-y-2" disabled={answered}>
+      {options.map((option) => {
+        const isSelected = selectedOption === option.value;
+        const isCorrect = correctOption === option.value;
+
+        let labelClass = `
+          w-full flex items-center gap-3 p-4 rounded-md transition cursor-pointer
+          bg-gray-200
+        `;
+
+        if (answered) {
+          if (isCorrect) {
+            labelClass += " bg-green-700 text-white font-bold";
+          } else if (isSelected) {
+            labelClass += " bg-red-500 text-white font-bold";
+          }
+
+          // hover desativado
+          labelClass += " cursor-default";
+        } else {
+          labelClass += `
+            hover:bg-green-100
+            peer-checked:bg-green-200 peer-checked:border peer-checked:border-green-900
+            peer-checked:font-black peer-checked:text-black peer-checked:hover:bg-green-200
+          `;
+        }
+
+        return (
+          <div key={option.id} className="relative flex items-center">
+            <input
+              type="radio"
+              id={option.id}
+              name={name}
+              value={option.value}
+              defaultChecked={option.value === defaultValue}
+              className="peer hidden"
+              onChange={onChange}
+              disabled={answered} // desativa clique
+            />
+            <label htmlFor={option.id} className={labelClass}>
+              <span>{option.value}.</span>
+              <span className="text-sm font-medium">{option.label}</span>
+            </label>
+          </div>
+        );
+      })}
     </fieldset>
   );
 }

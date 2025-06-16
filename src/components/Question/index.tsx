@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { QuestionModel } from "@/models/questions/question-model";
 import { RadioGroup } from "../ui/RadioGroup";
+import { ButtonDefault } from "../ui/Buttons/ButtonDefault";
 
 interface Props {
   question: QuestionModel;
@@ -39,24 +40,23 @@ export function Question({ question }: Props) {
           ]}
           name={`question-${question.id}`}
           defaultValue={selectedOption ?? ""}
-          onChange={handleChange} // ✅ agora funciona
+          onChange={handleChange}
+          selectedOption={selectedOption}
+          correctOption={question.correctOption}
+          answered={answered}
         />
 
-        <button
-          className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
-          onClick={handleAnswer}
-          disabled={!selectedOption}
-        >
+        <ButtonDefault onClick={handleAnswer} disabled={!selectedOption}>
           Responder
-        </button>
+        </ButtonDefault>
 
         {answered && (
           <p
-            className={`mt-2 font-bold ${
-              isCorrect ? "text-green-600" : "text-red-600"
+            className={`mt-4 text-lg font-bold ${
+              isCorrect ? "text-green-700" : "text-red-600"
             }`}
           >
-            {isCorrect ? "Resposta correta!" : "Resposta errada!"}
+            {isCorrect ? "✅ Resposta correta!" : "❌ Resposta errada!"}
           </p>
         )}
       </div>
